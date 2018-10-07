@@ -11,17 +11,23 @@ class App extends Component {
     this.state = {
       error: null,
       data: null,
+      usernames: "",
     };
   }
 
   handleChange = (event) => {
-    const { name, value } = event.target;
-    console.log({ name })
-    console.log({ value })
+    this.setState({
+      usernames: event.target.value,
+    })
   }
 
   handleGetData = () => {
-    console.log("handleGetData")
+    const usernames = this.state.usernames
+      // split usernames at the comma
+      .split(",")
+      // filter out empty strings
+      .filter(u => u);
+    console.log({ usernames })
   }
 
   render() {
