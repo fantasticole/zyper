@@ -2,28 +2,11 @@ import React, { Component } from "react";
 
 import List from "./components/List";
 
+import { sampleIndividualData } from "./utils/sampleData.js";
+
 import "./styles/app.scss";
 
 const ZYPER_URL = "https://fe-test-zyper-engagement.herokuapp.com";
-
-const sampleData = {
-  "0": {
-    "output": {
-      "Average Comments": "4562.8",
-      "Average Engagement (per post as % of followers)": "1.2",
-      "Average Engagement per post": "175426.2",
-      "Average Likes": "170863.3",
-      "Average Video Views": "0.0",
-      "Bio": "",
-      "Counted posts": 12,
-      "Followers": 15002740,
-      "Following": 0,
-      "Number of Hashtags": "6.0",
-      "Total Engagement": "2105114.0",
-      "username": "oprah"
-    }
-  }
-}
 
 class App extends Component {
   constructor(props) {
@@ -32,7 +15,7 @@ class App extends Component {
     this.state = {
       error: null,
       // data: null,
-      data: sampleData,
+      data: sampleIndividualData,
       individual: false,
       usernames: "",
     };

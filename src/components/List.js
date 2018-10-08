@@ -32,6 +32,10 @@ const datumPropType = PropTypes.shape({
     "Number of Hashtags": PropTypes.string,
     "Total Engagement": PropTypes.string,
     "username": PropTypes.string,
+    "Average engagement (per post)": PropTypes.string,
+    "Average number of Followers": PropTypes.string,
+    "Number of Accounts": PropTypes.num,
+    "Total number of Followers (Reach)": PropTypes.string,
   }),
 });
 
