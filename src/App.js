@@ -87,13 +87,17 @@ class App extends Component {
             name="usernames"
             onChange={this.handleUsernames}
           />
-          <input
-            defaultValue={false}
-            name="individual"
-            onChange={this.handleToggleIndividual}
-            type="checkbox"
-          />
-          <button onClick={this.handleGetData}>Submit</button>
+          <div className="bottom">
+            <input
+              className="checkbox"
+              defaultValue={false}
+              name="individual"
+              onChange={this.handleToggleIndividual}
+              type="checkbox"
+            />
+            <p className="label">list individually?</p>
+            <button onClick={this.handleGetData}>Submit</button>
+          </div>
         </div>
         <List data={this.state.data} />
       </div>

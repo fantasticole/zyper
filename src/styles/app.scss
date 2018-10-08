@@ -1,1 +1,82 @@
-.app {}
+.app {
+  display: flex;
+
+  .form {
+    padding-top: 20px;
+    padding-left: 20px;
+    width: calc(30vw - 20px);
+
+    textarea {
+      height: 150px;
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+      border-radius: 3px;
+    }
+
+    .bottom {
+      position: relative;
+      width: 100%;
+      box-sizing: border-box;
+      padding-top: 16px;
+    }
+
+    .checkbox {
+      display: inline-block;
+      height: 1rem;
+      width: 1rem;
+    }
+
+    p {
+      display: inline-block;
+      margin-top: 0;
+    }
+
+    button {
+      padding: 5px 10px;
+      text-transform: uppercase;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .list {
+    flex-grow: 1;
+    padding: 20px;
+
+    h1 {
+      margin: 0 0 10px;
+      text-align: center;
+    }
+
+    .user {
+      width: 100%;
+      padding: 10px;
+
+      &:nth-child(2n-1) {
+        background-color: #eee;
+      }
+
+      h2 {
+        border-bottom: 1px solid black;
+        display: inline-block;
+        margin: 0 0 5px;
+      }
+
+      .info {
+        display: inline-block;
+        margin: 3px 0;
+      }
+
+      .label {
+        @extend .info;
+        font-weight: bold;
+        margin-right: 8px;
+      }
+
+      .detail {
+        @extend .info;
+      }
+    }
+  }
+}
