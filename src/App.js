@@ -11,11 +11,18 @@ class App extends Component {
     this.state = {
       error: null,
       data: null,
+      individual: false,
       usernames: "",
     };
   }
 
-  handleChange = (event) => {
+  handleToggleIndividual = () => {
+    this.setState(({individual}) => ({
+      individual: !individual,
+    }))
+  }
+
+  handleUsernames = (event) => {
     this.setState({
       usernames: event.target.value,
     })
@@ -27,7 +34,44 @@ class App extends Component {
       .split(",")
       // filter out empty strings
       .filter(u => u);
-    console.log({ usernames })
+
+    // if we have usernames
+    if (usernames.length) {
+      // fetch data about each username
+      const options = {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({
+          username: usernames.join(","),
+          individual: this.state.individual,
+        })
+      };
+
+      fetch("https://fe-test-zyper-engagement.herokuapp.com/start", options)
+        .then(response => response.json())
+        .then((res) => {
+          this.handleGetJob(res);
+        })
+        .catch((error) => {
+          this.setState({ error });
+        });
+    } else {
+      this.setState({
+        error: { message: "Please supply at least one username" },
+      })
+    }
+  }
+
+  handleGetJob = (jobID) => {
+    fetch(`https://fe-test-zyper-engagement.herokuapp.com/results/${jobID}`)
+      .then(response => response.json())
+      .then((res) => {
+        const { data } = res;
+        this.setState({ data });
+      })
+      .catch((error) => {
+        this.setState({ error });
+      });
   }
 
   render() {
@@ -36,7 +80,13 @@ class App extends Component {
         <div className="form">
           <textarea
             name="usernames"
-            onChange={this.handleChange}
+            onChange={this.handleUsernames}
+          />
+          <input
+            defaultValue={false}
+            name="individual"
+            onChange={this.handleToggleIndividual}
+            type="checkbox"
           />
           <button onClick={this.handleGetData}>Submit</button>
         </div>
