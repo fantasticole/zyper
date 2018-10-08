@@ -23,12 +23,14 @@ class App extends Component {
 
   handleToggleIndividual = () => {
     this.setState(({individual}) => ({
+      error: null,
       individual: !individual,
     }))
   }
 
   handleUsernames = (event) => {
     this.setState({
+      error: null,
       usernames: event.target.value,
     })
   }
@@ -72,7 +74,10 @@ class App extends Component {
       .then(response => response.json())
       .then((res) => {
         const { data } = res;
-        this.setState({ data });
+        this.setState({
+          data,
+          error: null,
+        });
       })
       .catch((error) => {
         this.setState({ error });
@@ -80,9 +85,11 @@ class App extends Component {
   }
 
   render() {
+    const { error, data } = this.state;
     return (
       <div className="app">
         <div className="form">
+          {error && <p className="error">{error.message}</p>}
           <textarea
             name="usernames"
             onChange={this.handleUsernames}
@@ -99,7 +106,7 @@ class App extends Component {
             <button onClick={this.handleGetData}>Submit</button>
           </div>
         </div>
-        <List data={this.state.data} />
+        <List data={data} />
       </div>
     );
   }
