@@ -4,13 +4,35 @@ import List from "./components/List";
 
 import "./styles/app.scss";
 
+const ZYPER_URL = "https://fe-test-zyper-engagement.herokuapp.com";
+
+const sampleData = {
+  "0": {
+    "output": {
+      "Average Comments": "4562.8",
+      "Average Engagement (per post as % of followers)": "1.2",
+      "Average Engagement per post": "175426.2",
+      "Average Likes": "170863.3",
+      "Average Video Views": "0.0",
+      "Bio": "",
+      "Counted posts": 12,
+      "Followers": 15002740,
+      "Following": 0,
+      "Number of Hashtags": "6.0",
+      "Total Engagement": "2105114.0",
+      "username": "oprah"
+    }
+  }
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       error: null,
-      data: null,
+      // data: null,
+      data: sampleData,
       individual: false,
       usernames: "",
     };
@@ -47,7 +69,7 @@ class App extends Component {
         })
       };
 
-      fetch("https://fe-test-zyper-engagement.herokuapp.com/start", options)
+      fetch(`${ZYPER_URL}/start`, options)
         .then(response => response.json())
         .then((res) => {
           this.handleGetJob(res);
@@ -63,7 +85,7 @@ class App extends Component {
   }
 
   handleGetJob = (jobID) => {
-    fetch(`https://fe-test-zyper-engagement.herokuapp.com/results/${jobID}`)
+    fetch(`${ZYPER_URL}/results/${jobID}`)
       .then(response => response.json())
       .then((res) => {
         const { data } = res;
