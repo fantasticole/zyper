@@ -1,3 +1,3 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-To run, clone the repo and `yarn install` from inside of the `instazyper` directory. Once that is done, run `yarn start`.
+To run, clone the repo and `yarn install` from inside of the `zyper` directory. Once that is done, run `yarn start`.
