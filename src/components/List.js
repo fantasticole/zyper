@@ -1,9 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const List = (props) => (
+const List = ({ data }) => (
   <div className="list">
-    <h1>List</h1>
+    <h1>Result</h1>
+    {Object.values(data).map(info => (
+      <div key={info.output.username}>
+        <h2>{info.output.username}</h2>
+        {Object.entries(info.output).map((line, i) => (
+          <div key={i}>
+            <p className="label">{line[0]}</p>
+            <p className="detail">{line[1]}</p>
+          </div>
+        ))}
+      </div>
+    ))}
   </div>
 );
 
